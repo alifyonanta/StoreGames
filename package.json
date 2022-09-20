@@ -1,0 +1,46 @@
+{
+  "name": "storegg",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "storybook": "start-storybook -s ./public -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "next": "12.2.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.0",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/builder-webpack5": "^6.5.10",
+    "@storybook/manager-webpack5": "^6.5.10",
+    "@storybook/react": "^6.5.10",
+    "@storybook/testing-library": "^0.0.13",
+    "@types/aos": "^3.0.4",
+    "@types/node": "18.7.15",
+    "@types/react": "18.0.18",
+    "@types/react-dom": "18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "aos": "^2.3.4",
+    "babel-loader": "^8.2.5",
+    "eslint": "^8.23.0",
+    "eslint-config-next": "12.2.5",
+    "eslint-config-standard-with-typescript": "^22.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.5",
+    "eslint-plugin-promise": "^6.0.1",
+    "eslint-plugin-react": "^7.31.7",
+    "eslint-plugin-storybook": "^0.6.4",
+    "typescript": "^4.8.2"
+  }
+}
