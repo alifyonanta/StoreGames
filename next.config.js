@@ -1,5 +1,7 @@
-module.exports = {
-    images: {
-      domains: ['bwa-store-game.herokuapp.com'],
-    },
-  };
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+}
+
+module.exports = nextConfig
