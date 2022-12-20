@@ -43,8 +43,7 @@ export default function NominalItem(props: NominalItemProps) {
                   />
                 </svg>
               </div>
-              <p className="text-lg color-palette-1 m-0">
-                <NumberFormat value={price} prefix="Rp." />
+              <p className="text-lg color-palette-1 m-0">Rp {(price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
               </p>
             </div>
           </label>
