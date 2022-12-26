@@ -30,14 +30,14 @@ export default function SignUpPhoto() {
 
   useEffect(() => {
     const getLocalForm = localStorage.getItem('user-form');
-    setLocalForm(JSON.parse(getLocalForm));
+    setLocalForm(JSON.parse(getLocalForm!));
   }, []);
 
   const onSubmit = async () => {
     console.log('favorite ', favorite );
     console.log('image ', image);
     const getlocalForm = localStorage.getItem('user-form');
-    const form = JSON.parse(getlocalForm);
+    const form = JSON.parse(getlocalForm!);
     const data = new FormData();
 
     data.append('email', form.email);
@@ -50,10 +50,10 @@ export default function SignUpPhoto() {
     data.append('role', 'user');
     data.append('status', 'Y');
     const result = await setSignUp(data);
-    if (result?.error === 1){
+    if (result.error){
       toast.error(result.message)
     } else {
-      toast('Register Berhasil');
+      toast.success('Register Berhasil');
       router.push('/sign-up-success');
       localStorage.removeItem('user-form');
     }
