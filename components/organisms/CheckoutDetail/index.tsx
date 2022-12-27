@@ -1,4 +1,10 @@
+import { useEffect } from "react";
+
 export default function CheckoutDetail() {
+  useEffect(() => {
+    const dataFromLocal = localStorage.getItem('data-topup');
+    const dataTopupLocal = JSON.parse(dataFromLocal!);
+  }, []);
   return (
     <>
     <div className="purchase pt-md-50 pt-30">
