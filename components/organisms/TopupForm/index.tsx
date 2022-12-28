@@ -20,10 +20,11 @@ export default function TopupForm(props: TopupFormProps) {
   const onNominalItemChange = (data: NominalsTypes) => {
     setNominalItem(data);
   };
-  const onPaymentItemChange = (payment: String, bank: String) =>{
+  const onPaymentItemChange = (payment: String, bank: String, _id: String) =>{
     const data = {
       payment,
       bank,
+      _id,
     };
     setPaymentItem(data);
   }
@@ -96,8 +97,8 @@ export default function TopupForm(props: TopupFormProps) {
                 />
               })
             })} */}
-            <PaymentItem bankID="126" type="Transfer" name="BCA" onChange={() => onPaymentItemChange("Transfer", "BCA")}/>
-            <PaymentItem bankID="127" type="Transfer" name="Mandiri" onChange={() => onPaymentItemChange("Transfer", "Mandiri")}/>
+            <PaymentItem bankID="126" type="Transfer" name="BCA" onChange={() => onPaymentItemChange("Transfer", "BCA", "60ae2431196ccd27e6587ab1")}/>
+            <PaymentItem bankID="127" type="Transfer" name="Mandiri" onChange={() => onPaymentItemChange("Transfer", "Mandiri", "60ae2431196ccd27e6587ab3")}/>
             <div className="col-lg-4 col-sm-6"></div>
           </div>
         </fieldset>

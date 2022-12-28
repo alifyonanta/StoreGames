@@ -1,10 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function CheckoutDetail() {
+  const [dataTopUp, setDataTopUp] = useState({
+    verifyID: '',
+    nominalItem: {
+      price: 0,
+      coinQuantity: 0,
+      coinName: '',
+      _id: '',
+    },
+    paymentItem: {
+      bank: '',
+      payment: '',
+    },
+    bankAccountName: '',
+  })
   useEffect(() => {
     const dataFromLocal = localStorage.getItem('data-topup');
     const dataTopupLocal = JSON.parse(dataFromLocal!);
+    setDataTopUp(dataTopupLocal);
   }, []);
+  const itemPrice = dataTopUp.nominalItem.price;
+  const tax = dataTopUp.nominalItem.price * (10/100);
+  const totalPrice = itemPrice + tax
   return (
     <>
     <div className="purchase pt-md-50 pt-30">
@@ -12,24 +30,24 @@ export default function CheckoutDetail() {
             Purchase Details
           </h2>
           <p className="text-lg color-palette-1 mb-20">
-            Your Game ID <span className="purchase-details">masayoshizero</span>
+            Your Game ID <span className="purchase-details">{dataTopUp.verifyID}</span>
           </p>
           <p className="text-lg color-palette-1 mb-20">
             Order ID <span className="purchase-details">#GG001</span>
           </p>
           <p className="text-lg color-palette-1 mb-20">
-            Item <span className="purchase-details">250 Diamonds</span>
+            Item <span className="purchase-details">{dataTopUp.nominalItem.coinQuantity} {' '} {dataTopUp.nominalItem.coinName}</span>
           </p>
           <p className="text-lg color-palette-1 mb-20">
-            Price <span className="purchase-details">Rp 42.280.500</span>
+            Price <span className="purchase-details">Rp {(itemPrice).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</span>
           </p>
           <p className="text-lg color-palette-1 mb-20">
-            Tax (10%) <span className="purchase-details">Rp 4.228.000</span>
+            Tax (10%) <span className="purchase-details">Rp {(tax).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</span>
           </p>
           <p className="text-lg color-palette-1 mb-20">
             Total{" "}
             <span className="purchase-details color-palette-4">
-              Rp 55.000.600
+              Rp {(totalPrice).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
             </span>
           </p>
         </div>
@@ -39,13 +57,13 @@ export default function CheckoutDetail() {
           </h2>
           <p className="text-lg color-palette-1 mb-20">
             Your Account Name{" "}
-            <span className="purchase-details">Masayoshi Angga Zero</span>
+            <span className="purchase-details">{dataTopUp.bankAccountName}</span>
           </p>
           <p className="text-lg color-palette-1 mb-20">
-            Type <span className="payment-details">Worldwide Transfer</span>
+            Type <span className="payment-details">{dataTopUp.paymentItem.payment}</span>
           </p>
           <p className="text-lg color-palette-1 mb-20">
-            Bank Name <span className="payment-details">Mandiri</span>
+            Bank Name <span className="payment-details">{dataTopUp.paymentItem.bank}</span>
           </p>
           <p className="text-lg color-palette-1 mb-20">
             Bank Account Name{" "}
