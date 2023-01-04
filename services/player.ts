@@ -34,3 +34,12 @@ export async function setCheckout(data: CheckutTypes) {
         token: true,
     });
 }
+
+export async function getMemberOverview() {
+    const url = `${ROOT_API}/${API_VERSION}/players/dashboard`;
+    return callAPI({
+        url,
+        method: 'GET',
+        token: true,
+    });
+}

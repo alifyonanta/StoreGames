@@ -20,7 +20,7 @@ export default function Categori(props: CategoriProps) {
         <div>
           <p className="text-sm color-palette-2 mb-1">Total Spent</p>
           <p className="text-2xl color-palette-1 fw-medium m-0">
-           Rp. {nominal}
+           Rp. {(nominal).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
           </p>
         </div>
       </div>
