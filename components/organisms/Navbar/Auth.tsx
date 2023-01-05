@@ -28,6 +28,7 @@ export default function Auth() {
   const onLogout = () => {
     Cookies.remove('token');
     router.push('/');
+    setIsLogin(false);
   }
 
   if (isLogin) {
