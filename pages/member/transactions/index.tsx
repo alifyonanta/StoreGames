@@ -30,14 +30,7 @@ export async function getServerSideProps({req} : GetServerSideProps) {
       },
     };
   }
-  const jwtToken = atob(token);
-  const payload: JWTPayloadTypes = jwtDecode(jwtToken);
-  const userFromPayload: UserTypes = payload.player;
-  const IMG = process.env.NEXT_PUBLIC_IMG;
-  userFromPayload.avatar = `${IMG}/${userFromPayload.avatar}`;
   return {
-    props: {
-      user: userFromPayload,
-    },
+    props: {},
   };  
 }

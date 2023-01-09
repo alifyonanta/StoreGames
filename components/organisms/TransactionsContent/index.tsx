@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { HistoryTransactionsTypes } from "../../../services/data-types";
 import { getMemberTransactions } from "../../../services/member";
 import ButtonTab from "./ButtonTab";
 import TableRow from "./TableRow";
@@ -13,7 +14,7 @@ export default function TransactionsContent() {
     if(response.error){
       toast.error(response.message)
     } else {
-      console.log('data : ', response)
+      //console.log('data : ', response)
       setTotal(response.data.total)
       setTransactions(response.data.data)
     }
@@ -65,7 +66,7 @@ export default function TransactionsContent() {
                 </tr>
               </thead>
               <tbody id="list_status_item">
-              {transactions.map((transaction) => (
+              {transactions.map((transaction: HistoryTransactionsTypes) => (
                 <TableRow 
                   key={transaction._id}
                   title={transaction.historyVoucherTopup.gameName} 
@@ -73,6 +74,7 @@ export default function TransactionsContent() {
                   status={transaction.status} 
                   image={transaction.historyVoucherTopup.thumbnail} 
                   price={`Rp ${(transaction.value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`}
+                  id={transaction._id}
                   />
               ))}
               </tbody>
