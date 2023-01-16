@@ -5,7 +5,8 @@ import Footer from "../../components/organisms/Footer";
 import Navbar from "../../components/organisms/Navbar";
 import TopupForm from "../../components/organisms/TopupForm";
 import TopupItem from "../../components/organisms/TopupItem";
-import { getDetailVoucher } from "../../services/player";
+import { GameItemTypes } from "../../services/data-types";
+import { getDetailVoucher, getFeaturedGame } from "../../services/player";
 
 export default function Detail() {
   const {query, isReady} = useRouter();
@@ -61,3 +62,34 @@ export default function Detail() {
     </>
   );
 }
+
+// export async function getStaticPaths() {
+//   const data = await getFeaturedGame();
+//   const paths = data.map((item: GameItemTypes) => ({
+//     params: {
+//       id: item._id,
+//     },
+//   }));
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
+
+// interface GetStaticProps {
+//   params: {
+//     id: string,
+//   }
+// }
+
+// export async function getStaticProps({params}: GetStaticProps) {
+//   const { id } = params;
+//   const data = await getDetailVoucher(id);
+//   return {
+//     props: {
+//       dataItem: data.detail, 
+//       nominals: data.nominals, 
+//       payments: data.payments
+//     },
+//   };
+// }

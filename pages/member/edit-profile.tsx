@@ -1,17 +1,22 @@
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import Input from "../../components/atoms/Input";
 import SideBar from "../../components/organisms/SideBar";
 import { JWTPayloadTypes, UserTypes } from "../../services/data-types";
+import { updateProfile } from "../../services/member";
 
 export default function EditProfile() {
   const [user, setUser] = useState({
+    id: '',
     username: '',
     email: '',
     avatar: '',
   });
   const [imagePreview, setImagePreview] = useState(null);
+  const router = useRouter();
   useEffect(() => {
     const token = Cookies.get('token');
     if(token){
@@ -21,8 +26,19 @@ export default function EditProfile() {
       setUser(userFromPayload);
     }
   }, []);
-  const onSubmit = () => {
-    console.log('Data: ', user)
+  const onSubmit = async () => {
+    //console.log('Data: ', user);
+    const data = new FormData();
+    data.append('image', user.avatar);
+    data.append('name', user.username);
+    const response = await updateProfile(data, user.id);
+    if(response.error){
+      toast.error(response.message)
+    } else {
+      //console.log('data : ', response)
+      Cookies.remove('token');
+      router.push('/sign-in');
+    }
   };
   return (
     <section className="edit-profile overflow-auto">
