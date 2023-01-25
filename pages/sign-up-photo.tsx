@@ -1,16 +1,16 @@
-import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
-import { setSignUp } from "../services/auth";
 import { useRouter } from "next/router";
-import { getGameCategory } from "../services/player";
+import { useCallback, useEffect, useState } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { setSignUp } from "../services/auth";
+import { CategoryTypes } from "../services/data-types";
+import { getGameCategory } from "../services/player";
 
 export default function SignUpPhoto() {
   const [categories, setCategories] = useState([]);
   const [favorite, setFavorite] = useState('');
-  const [image, setImage] = useState('');
-  const [imagePreview, setImagePreview] = useState('/icon/upload.svg');
+  const [image, setImage] = useState<any>('');
+  const [imagePreview, setImagePreview] = useState<any>('/icon/upload.svg');
   const [localForm, setLocalForm] = useState({
     name: '',
     email: '',
@@ -19,7 +19,7 @@ export default function SignUpPhoto() {
 
   const getGameCategoryAPI = useCallback(async() => {
     const data = await getGameCategory();
-    console.log('data : ', data)
+    //console.log('data : ', data)
     setCategories(data);
     setFavorite(data[0]._id)
   }, []);
@@ -34,8 +34,8 @@ export default function SignUpPhoto() {
   }, []);
 
   const onSubmit = async () => {
-    console.log('favorite ', favorite );
-    console.log('image ', image);
+    //console.log('favorite ', favorite );
+    //console.log('image ', image);
     const getlocalForm = localStorage.getItem('user-form');
     const form = JSON.parse(getlocalForm!);
     const data = new FormData();
@@ -77,8 +77,8 @@ export default function SignUpPhoto() {
                     name="avatar"
                     accept="image/png, image/jpeg"
                     onChange={(event) => {
-                      setImagePreview(URL.createObjectURL(event.target.files[0]))
-                      setImage(event.target.files[0])}
+                      setImagePreview(URL.createObjectURL(event.target.files![0]))
+                      setImage(event.target.files![0])}
                     } 
                   />
                 </div>
@@ -106,7 +106,7 @@ export default function SignUpPhoto() {
                     setFavorite(event.target.value)
                   }}
                 >
-                  {categories.map(category => {
+                  {categories.map((category: CategoryTypes) => {
                     return <option key={category._id} value={category._id} selected>{category.name}</option>
                   })}
                 </select>

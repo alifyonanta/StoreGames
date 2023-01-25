@@ -29,7 +29,7 @@ export default function TopupForm(props: TopupFormProps) {
     setPaymentItem(data);
   }
   const onSubmit = () => {
-    if(verifyID === '' || bankAccountName === '' || nominalItem === {} || paymentItem === {}){
+    if(verifyID === '' || bankAccountName === '' || nominalItem === !{} || paymentItem === !{}){
       toast.error('Isi semua data yang masih kosong!')
     }else{
       const data = {

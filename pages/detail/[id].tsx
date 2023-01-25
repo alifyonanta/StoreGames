@@ -1,12 +1,10 @@
 import { useRouter } from "next/router";
-import { stringify } from "querystring";
 import { useCallback, useEffect, useState } from "react";
 import Footer from "../../components/organisms/Footer";
 import Navbar from "../../components/organisms/Navbar";
 import TopupForm from "../../components/organisms/TopupForm";
 import TopupItem from "../../components/organisms/TopupItem";
-import { GameItemTypes } from "../../services/data-types";
-import { getDetailVoucher, getFeaturedGame } from "../../services/player";
+import { getDetailVoucher } from "../../services/player";
 
 export default function Detail() {
   const {query, isReady} = useRouter();
@@ -20,7 +18,7 @@ export default function Detail() {
   const [nominals, setNominals] = useState([]);
   const [payments, setPayments] = useState([]);
 
-  const getVoucherDetailAPI = useCallback(async (id) => {
+  const getVoucherDetailAPI = useCallback(async (id:any) => {
     const data = await getDetailVoucher(id);
     setDataItem(data);
     localStorage.setItem('data-item', JSON.stringify(data));

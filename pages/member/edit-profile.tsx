@@ -8,14 +8,21 @@ import SideBar from "../../components/organisms/SideBar";
 import { JWTPayloadTypes, UserTypes } from "../../services/data-types";
 import { updateProfile } from "../../services/member";
 
+interface UserStateTypes {
+  id: string;
+  username: string;
+  email: string;
+  avatar: any;
+}
+
 export default function EditProfile() {
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<UserStateTypes>({
     id: '',
     username: '',
     email: '',
     avatar: '',
   });
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState<File|null>(null);
   const router = useRouter();
   useEffect(() => {
     const token = Cookies.get('token');
@@ -63,8 +70,9 @@ export default function EditProfile() {
                     name="avatar"
                     accept="image/png, image/jpeg"
                     onChange={(event) => {
-                      const img = event.target.files[0];
-                      setImagePreview(URL.createObjectURL(img));
+                      const img = event.target.files![0];
+                      //setImagePreview(URL.createObjectURL(img));
+                      setImagePreview(img);
                       return setUser({
                         ...user,
                         avatar: img,

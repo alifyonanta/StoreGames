@@ -9,7 +9,7 @@ export default function TransactionsContent() {
   const [total, setTotal] = useState(0);
   const [transactions, setTransactions] = useState([]);
   const [tab, setTab] = useState('all');
-  const getMemberTransactioAPI = useCallback(async (value) => {
+  const getMemberTransactioAPI = useCallback(async (value: string) => {
     const response = await getMemberTransactions(value);
     if(response.error){
       toast.error(response.message)
@@ -22,7 +22,7 @@ export default function TransactionsContent() {
   useEffect(() => {
     getMemberTransactioAPI('all');
   }, []);
-  const onTabClick = (value) => {
+  const onTabClick = (value: string) => {
     setTab(value);
     getMemberTransactioAPI(value);
   }
